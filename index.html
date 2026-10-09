@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fuso Reunião — o melhor horário entre fusos horários</title>
+  <meta name="description" content="Compare fusos horários e ache o melhor horário para reuniões: grade de 24 horas, expediente de cada lugar, horário de verão correto e convite pronto em português.">
+  <meta name="theme-color" content="#2563eb">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌎</text></svg>">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./src/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <h1>Fuso Reunião</h1>
+    <p class="lead">Ache o melhor horário para reuniões entre fusos horários, já com o horário de verão de cada lugar.</p>
+  </header>
+
+  <main>
+    <section class="card" aria-labelledby="setup-title">
+      <h2 id="setup-title">Lugares e data</h2>
+      <div class="setup">
+        <div>
+          <label for="date">Data</label>
+          <div class="date-row">
+            <input type="date" id="date" required>
+            <button type="button" class="btn secondary" id="today">Hoje</button>
+          </div>
+        </div>
+        <div>
+          <label for="zone-search">Adicionar lugar</label>
+          <div class="add-row">
+            <input id="zone-search" list="zone-list" placeholder="Ex.: Madri ou Asia/Seoul" autocomplete="off" aria-describedby="add-status">
+            <button type="button" class="btn" id="add-zone">Adicionar</button>
+          </div>
+          <datalist id="zone-list"></datalist>
+          <p class="field-status" id="add-status" aria-live="polite"></p>
+        </div>
+        <div>
+          <span class="group-label" id="work-label">Expediente</span>
+          <div class="work-row" role="group" aria-labelledby="work-label">
+            <label for="work-start" class="sr-only">Início do expediente</label>
+            <select id="work-start"></select>
+            <span aria-hidden="true">até</span>
+            <label for="work-end" class="sr-only">Fim do expediente</label>
+            <select id="work-end"></select>
+          </div>
+          <p class="field-status" id="work-status" aria-live="polite"></p>
+        </div>
+      </div>
+      <ul class="chips" id="zones" aria-label="Lugares escolhidos"></ul>
+      <p class="hint">O primeiro lugar é a referência: a grade mostra as 24 horas do dia dele.</p>
+      <div class="share-row">
+        <button type="button" class="btn secondary small" id="share">Copiar link desta comparação</button>
+        <p class="status" id="share-status" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="grid-title">
+      <div class="card-head">
+        <h2 id="grid-title">Horários do dia</h2>
+        <ul class="legend" aria-label="Legenda">
+          <li><span class="swatch work"></span><span id="legend-work">Expediente</span></li>
+          <li><span class="swatch edge"></span>Cedo ou tarde (07:00–22:00)</li>
+          <li><span class="swatch night"></span>Noite</li>
+        </ul>
+      </div>
+      <p class="summary" id="summary" aria-live="polite"></p>
+      <div class="grid-wrap" role="region" aria-labelledby="grid-title" tabindex="0">
+        <table class="tz-grid" id="grid"></table>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="details-title">
+      <h2 id="details-title">Horário escolhido</h2>
+      <ul class="details" id="details" aria-live="polite"></ul>
+      <label for="invite">Convite</label>
+      <textarea id="invite" rows="8" readonly></textarea>
+      <div class="share-row">
+        <button type="button" class="btn" id="copy-invite">Copiar convite</button>
+        <p class="status" id="invite-status" role="status" aria-live="polite"></p>
+      </div>
+      <p class="hint">Clique em qualquer linha da grade para escolher outro horário. A reunião considerada dura 1 hora.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Tudo roda no seu navegador, com os fusos horários do próprio sistema. Código aberto no <a href="https://github.com/micdog22/fuso-reuniao">GitHub</a> · Licença MIT</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "fuso-reuniao",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ache o melhor horário para reuniões entre fusos horários, com horário de verão correto e convite em português",
+  "type": "module",
+  "scripts": { "test": "node --test" },
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/micdog22/fuso-reuniao.git" },
+  "homepage": "https://micdog22.github.io/fuso-reuniao/"
+}

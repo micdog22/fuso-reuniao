@@ -253,7 +253,7 @@ function render() {
   els.date.value = state.date;
   els.workStart.value = String(state.work.start);
   els.workEnd.value = String(state.work.end);
-  els.legendWork.textContent = `Expediente (${hourLabel(state.work.start)}–${hourLabel(state.work.end)})`;
+  els.legendWork.textContent = `Expediente (${hourLabel(state.work.start)}-${hourLabel(state.work.end)})`;
   renderZones(instant);
   renderGrid(best, instant);
   renderSummary(best);

@@ -15,7 +15,7 @@ test('Nova York: horário padrão em janeiro, horário de verão em julho', () =
 });
 
 test('São Paulo não tem horário de verão desde 2019', () => {
-  // Dezembro de 2018 ainda tinha horário de verão (UTC−2).
+  // Dezembro de 2018 ainda tinha horário de verão (UTC-2).
   assert.equal(getOffsetMinutes('America/Sao_Paulo', at('2018-12-15T12:00:00Z')), -120);
   for (const iso of ['2019-12-15T12:00:00Z', '2025-01-15T12:00:00Z', '2026-07-15T12:00:00Z', '2026-12-15T12:00:00Z']) {
     assert.equal(getOffsetMinutes('America/Sao_Paulo', at(iso)), -180, iso);
@@ -34,9 +34,9 @@ test('outros fusos, inclusive com meia hora', () => {
   assert.equal(getOffsetMinutes('America/Noronha', at('2026-07-15T12:00:00Z')), -120);
   assert.equal(getOffsetMinutes('America/Manaus', at('2026-07-15T12:00:00Z')), -240);
   assert.equal(getOffsetMinutes('America/Rio_Branco', at('2026-07-15T12:00:00Z')), -300);
-  assert.equal(formatOffset(-180), 'UTC−3');
+  assert.equal(formatOffset(-180), 'UTC-3');
   assert.equal(formatOffset(330), 'UTC+5:30');
-  assert.equal(formatOffset(-210), 'UTC−3:30');
+  assert.equal(formatOffset(-210), 'UTC-3:30');
   assert.equal(formatOffset(0), 'UTC+0');
 });
 
@@ -82,7 +82,7 @@ test('conversão de horário com troca de data', () => {
   const late = zonedTimeToUtc('2026-10-08', 23, 0, 'Pacific/Pago_Pago');
   assert.equal(dayOffset('Pacific/Kiritimati', late, '2026-10-08'), 2);
   assert.equal(dayLabel(1), '+1 dia');
-  assert.equal(dayLabel(-1), '−1 dia');
+  assert.equal(dayLabel(-1), '-1 dia');
   assert.equal(dayLabel(2), '+2 dias');
   assert.equal(dayLabel(0), '');
 });
@@ -102,7 +102,7 @@ test('encontra os horários em que todos estão no expediente', () => {
   const rows = buildDayGrid('2026-10-08', DEFAULT_ZONES);
   const best = bestRows(rows);
   assert.equal(best.kind, 'all');
-  // Brasília 10h–13h = Lisboa 14h–17h = Nova York 9h–12h.
+  // Brasília 10h-13h = Lisboa 14h-17h = Nova York 9h-12h.
   assert.deepEqual(best.indexes.map((i) => rows[i].cells.map((c) => c.time)), [
     ['10:00', '14:00', '09:00'],
     ['11:00', '15:00', '10:00'],
@@ -134,7 +134,7 @@ test('texto do convite em português', () => {
     '• Tóquio: 10:00 às 11:00 (sexta-feira, 9 de outubro, +1 dia)',
   ].join('\n'));
   const tokyo = zonedTimeToUtc('2026-10-08', 8, 0, 'Asia/Tokyo');
-  assert.match(invitationText(tokyo, ['Asia/Tokyo', 'America/Sao_Paulo'], '2026-10-08'), /Brasília: 20:00 às 21:00 \(quarta-feira, 7 de outubro, −1 dia\)/);
+  assert.match(invitationText(tokyo, ['Asia/Tokyo', 'America/Sao_Paulo'], '2026-10-08'), /Brasília: 20:00 às 21:00 \(quarta-feira, 7 de outubro, -1 dia\)/);
 });
 
 test('estado na URL: ida e volta', () => {

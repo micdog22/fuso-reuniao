@@ -142,7 +142,7 @@ export function getOffsetMinutes(tz, instant) {
 }
 
 export function formatOffset(minutes) {
-  const sign = minutes < 0 ? '−' : '+';
+  const sign = minutes < 0 ? '-' : '+';
   const abs = Math.abs(minutes);
   const h = Math.floor(abs / 60);
   const m = abs % 60;
@@ -201,7 +201,7 @@ export function dayOffset(tz, instant, dateStr) {
 
 export function dayLabel(offset) {
   if (offset === 0) return '';
-  const sign = offset > 0 ? '+' : '−';
+  const sign = offset > 0 ? '+' : '-';
   const n = Math.abs(offset);
   return `${sign}${n} ${n === 1 ? 'dia' : 'dias'}`;
 }
